@@ -275,7 +275,7 @@ class MainWindow(QMainWindow):
         self.open.triggered.connect(self.openFile)
         self.save.triggered.connect(self.saveFile)
         self.saveAs.triggered.connect(self.saveFileAs)
-        self.exit.triggered.connect(self.close)
+        self.exit.triggered.connect(self.checkUnsaveChanges)
         #---- Edit CONNECTIONS
         self.copy.triggered.connect(self.text_edit.copy)
         self.cut.triggered.connect(self.text_edit.cut)
@@ -463,15 +463,18 @@ class MainWindow(QMainWindow):
         dialog.setLayout(layout)
         dialog.exec()
     #---------------------------------------------------------------------------------------
-    def confirmExit(self):
-        text = self.text_edit.toPlainText()
-        if text:
-            reply = QMessageBox.question(self, 'Save changes', '¿Do you want to save your changes before you leave?',
-                                         QMessageBox.Save | QMessageBox.Discard | QMessageBox.Cancel, QMessageBox.Save)
+    def checkUnsaveChanges(self):
+        self.saved_changes = False
+        if self.text_edit.toPlainText():
+            reply = QMessageBox.question(self, 'Unsaved changes', '¿Do you want to save your changes before exiting?',
+                                         QMessageBox.Save | QMessageBox.Discard | QMessageBox.Cancel)
             if reply == QMessageBox.Save:
+
                 self.saveFile()
+                self.text_edit.setPlainText('')
                 self.close()
             elif reply == QMessageBox.Discard:
+                self.text_edit.setPlainText('')
                 self.close()
             else:
                 pass
@@ -480,9 +483,13 @@ class MainWindow(QMainWindow):
             
 
     def closeEvent(self, event):
-        self.confirmExit()
-        event.ignore()
-        
+        if self.text_edit.toPlainText():
+            self.checkUnsaveChanges()
+            event.ignore()
+        else:
+            self.close
+            event.accept()
+
 ########
 # MAIN #
 if __name__ == "__main__":
