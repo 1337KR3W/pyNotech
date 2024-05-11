@@ -15,12 +15,14 @@ class MainWindow(QMainWindow):
         ########################
         # MAIN WINDOW SETTINGS #
         self.resize(800, 500)
-        self.setWindowTitle("Untitled")
+        self.initialTitle = "Untitled"
+        self.setWindowTitle(self.initialTitle)
         self.current_path = None
         self.current_font_size = 14
         self.custom_font = QFont()
         self.custom_font.setPointSize(self.current_font_size)
         self.darkThemeStyle = '''QWidget{background-color: rgb(49,49,49);color: #FFFFFF;}QTextEdit{background-color: rgb(29,29,29);}QMenuBar::item:selected{color: #000000;}QMenu::item:selected{background-color: rgb(66,66,66);}'''
+        self.recentlyOpen = False
         #---- ICONS, Uncoment and iterate for getting all posible icons
         #icons = sorted([attr for attr in dir(QStyle.StandardPixmap) if attr.startswith("SP_")])
         #------------------------- NEW ICON
@@ -86,6 +88,8 @@ class MainWindow(QMainWindow):
         self.text_edit.setFrameStyle(0)
         self.text_edit.setFont(self.custom_font)
         add_widget(main_layout, self.text_edit)
+        self.text_edit.textChanged.connect(self.updateWindowTitle)
+        #self.update_window_title
         #---------------------------------------------------------------------------------------
         ########################
         # BOTTON BAR WITH INFO #
@@ -307,12 +311,16 @@ class MainWindow(QMainWindow):
     def openFile(self):
         open_file = QFileDialog().getOpenFileName(self, 'Open file', 'Desktop','Text files (*.txt)')
         if open_file:
+            self.recentlyOpen = True
             try:
-                self.setWindowTitle(open_file[0])
+                self.initialTitle = open_file[0]
+                self.setWindowTitle(self.initialTitle)
+                #self.setWindowTitle(open_file[0])
                 with open(open_file[0], 'r') as f:
                     file_text = f.read()
                     self.text_edit.setPlainText(file_text)
                 self.current_path = open_file[0]
+                self.recentlyOpen = False
             except FileNotFoundError:
                 print("File not found")
         else:
@@ -325,6 +333,8 @@ class MainWindow(QMainWindow):
             fileTextContent = self.text_edit.toPlainText()
             with open(self.current_path, 'w') as f:
                 f.write(fileTextContent)
+                self.initialTitle = str(self.current_path)
+                self.setWindowTitle(self.initialTitle)
         else:
             self.saveFileAs()
     #---------------------------------------------------------------------------------------
@@ -336,6 +346,7 @@ class MainWindow(QMainWindow):
         with open(pathName[0], 'w') as f:
             f.write(fileTextContent)
         self.current_path = pathName[0]
+        self.initialTitle = pathName[0]
         self.setWindowTitle(pathName[0])               
     #---------------------------------------------------------------------------------------
     ####################
@@ -489,6 +500,12 @@ class MainWindow(QMainWindow):
         else:
             self.close
             event.accept()
+
+    def updateWindowTitle(self):
+        if self.text_edit.textChanged and not self.recentlyOpen:
+            self.setWindowTitle(f"{self.initialTitle} (*)")
+        else:
+            self.setWindowTitle(self.initialTitle)
 
 ########
 # MAIN #
