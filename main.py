@@ -1,7 +1,7 @@
 ###########
 # IMPORTS #
 import sys
-from PySide6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QHBoxLayout, QWidget, QTextEdit, QWidgetAction, QToolBar, QStyle, QFileDialog, QInputDialog, QLabel, QFrame, QDialog
+from PySide6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QHBoxLayout, QWidget, QTextEdit, QWidgetAction, QToolBar, QStyle, QFileDialog, QInputDialog, QLabel, QFrame, QDialog, QMessageBox
 from PySide6.QtGui import QIcon, QFont, QTextCursor, QBrush, QTextCharFormat, QColor
 from PySide6.QtCore import QRegularExpression, Qt, QTimer
 from datetime import *
@@ -463,7 +463,26 @@ class MainWindow(QMainWindow):
         dialog.setLayout(layout)
         dialog.exec()
     #---------------------------------------------------------------------------------------
+    def confirmExit(self):
+        text = self.text_edit.toPlainText()
+        if text:
+            reply = QMessageBox.question(self, 'Save changes', '¿Do you want to save your changes before you leave?',
+                                         QMessageBox.Save | QMessageBox.Discard | QMessageBox.Cancel, QMessageBox.Save)
+            if reply == QMessageBox.Save:
+                self.saveFile()
+                self.close()
+            elif reply == QMessageBox.Discard:
+                self.close()
+            else:
+                pass
+        else:
+            self.close()
+            
 
+    def closeEvent(self, event):
+        self.confirmExit()
+        event.ignore()
+        
 ########
 # MAIN #
 if __name__ == "__main__":
