@@ -1,14 +1,30 @@
 ###########
 # IMPORTS #
 import sys
-from PySide6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QHBoxLayout, QWidget, QTextEdit, QWidgetAction, QToolBar, QStyle, QFileDialog, QInputDialog, QLabel, QFrame, QDialog, QMessageBox
-from PySide6.QtGui import QIcon, QFont, QTextCursor, QBrush, QTextCharFormat, QColor
-from PySide6.QtCore import QRegularExpression, Qt, QTimer
+from PySide6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QHBoxLayout, QWidget, QTextEdit, QWidgetAction, QToolBar, QStyle, QFileDialog, QInputDialog, QLabel, QFrame, QDialog, QMessageBox, QTableWidget, QTableWidgetItem
+from PySide6.QtGui import QIcon, QFont, QTextCursor, QBrush, QTextCharFormat, QColor, QDesktopServices
+from PySide6.QtCore import QRegularExpression, Qt, QTimer, QUrl
 from datetime import *
 import platform
 import locale
 #---------------------------------------------------------------------------------------
 
+#***************************************************************************************
+#     _.._   .    .  ._   .   _.._   _____   _.._   _.._  .    .                       *
+#    |´    )  \  /  |´ \  |  f    i | `|´ | |´     |´     |    |                       *
+#    |___.´    y`   |  |  |  |    |    |    |__    |      |____|                       *
+#    |´        |    |  |  |  |    |    |    |´     |      |´  `|                       *
+#    i         i    i  L__J   \__/     i    L____  L____  i    i  by josrojrom1        *
+#    ¡         :          !     :              ¡          .    :                       *
+#              .          :                    .          !                            *
+#    .                          .                         .                            *
+#                                                                                      *
+#                          .                    ¡                                      *
+#                                                                                      *
+#***************************************************************************************
+
+#####################
+# MAIN WINDOW CLASS #
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -54,7 +70,7 @@ class MainWindow(QMainWindow):
         self.redo_icon_w = self.style().standardIcon(redo_icon_w_path) 
         #------------------------- ABOUT ICON
         about_icon_path = getattr(QStyle, "SP_FileDialogInfoView")
-        about_icon = self.style().standardIcon(about_icon_path) 
+        self.about_icon = self.style().standardIcon(about_icon_path) 
         #------------------------- SEARCH ICON
         search_icon_path = getattr(QStyle, "SP_FileDialogContentsView")
         search_icon = self.style().standardIcon(search_icon_path)
@@ -220,7 +236,7 @@ class MainWindow(QMainWindow):
         self.lightTheme.setIconText("Light mode")
         #------------------------- ABOUT ACTION
         self.about = QWidgetAction(self)
-        self.about.setIcon(about_icon)
+        self.about.setIcon(self.about_icon)
         self.about.setIconText("About")
         #------------------------- CONTRIBUTE ACTION
         self.contribute = QWidgetAction(self)
@@ -297,6 +313,7 @@ class MainWindow(QMainWindow):
         #---- Help CONNECTIONS
         self.about.triggered.connect(self.showAbout)
         self.moreHelp.triggered.connect(self.showMoreHelp)
+        self.contribute.triggered.connect(self.goGitRepo)
         #---------------------------------------------------------------------------------------
     #####################
     # NEW FILE FUNCTION #
@@ -447,12 +464,27 @@ class MainWindow(QMainWindow):
     def showAbout(self):
         dialog = QDialog()
         dialog.setWindowTitle("About")
+        dialog.setWindowIcon(self.about_icon)
         dialog.setModal(True)
-
-        label = QLabel("Este es un bloc de notas desarrollado con PySide6 en Python.\n"
-                      "Este es un ejemplo de cómo crear una aplicación con interfaz gráfica.\n"
-                      "Puedes encontrar más información sobre PySide6 en su sitio web oficial.")
+        dialog.setStyleSheet("background-color: rgb(175,210,255)")
+        aboutFont = QFont()
+        aboutFont.setPointSize(11)
+        # ABOUT LABEL #
+        label = QLabel("      pyNotech es un bloc de notas digital desarrollado como proyecto open source para\n"+
+                        "el trabajo de fin de grado en Ingeniería Informática del Software por la Universidad de\n"+
+                        "Sevilla (US). Utilizando PySide6 para Python, pyNotech es una aplicación de escritorio\n"+
+                        "intuitiva y eficiente, desarrollada con el objetivo de aprender y establecer las bases del\n"+
+                        "desarrollo de aplicaciones de escritorio.\n\n\n"
+                        "Autor, José Joaquín Rojas Romero                                                 pyNotech v1.0.0-beta")
+        # ABOUT LABEL STYLE #
         label.setAlignment(Qt.AlignmentFlag.AlignJustify)
+        label.setFont(aboutFont)
+        label.setMargin(10)
+        label.setStyleSheet("background-color: rgb(220,236,255);")#
+        label.setFrameShape(QFrame.Panel)#
+        label.setFrameShadow(QFrame.Sunken)#
+        label.setLineWidth(2)#
+        # LAYOUT #
         layout = QVBoxLayout()
         layout.addWidget(label)
         dialog.setLayout(layout)
@@ -461,38 +493,107 @@ class MainWindow(QMainWindow):
     ####################
     # MORE HELP WINDOW #
     def showMoreHelp(self):
+        # MORE HELP DIALOG #
         dialog = QDialog()
         dialog.setWindowTitle("More help")
         dialog.setModal(True)
-
-        label = QLabel("Si encuentras algún problema con la aplicación puedes ponerte en contacto\n"
-                       "mandando un email a la siguiente dirección de correo electrónico:\n"
-                       "josrojrom1@gmail.com")
+        dialog.setStyleSheet("background-color: rgb(175,210,255)")
+        # TABLES CREATION #
+        shortcutsTable1 = QTableWidget()
+        shortcutsTable1.setColumnCount(2)    
+        shortcutsTable1.setHorizontalHeaderLabels(["Shortcut", "Description"])
+        shortcutsTable2 = QTableWidget()
+        shortcutsTable2.setColumnCount(2)    
+        shortcutsTable2.setHorizontalHeaderLabels(["Shortcut", "Description"])
+        # DATA FOR TABLE 1 #
+        shortcuts1 ={"New file": "Ctrl + N",
+                    "Open file": "Ctrl + O",              
+                    "Save file": "Ctrl + S",            
+                    "Save file as": "Ctrl + Shift + S",     
+                    "Exit": "Ctrl + Q",
+                    "Zoom in": "Ctrl + +",             
+                    "Zoom out": "Ctrl + -"}
+        # DATA FOR TABLE 2 #
+        shortcuts2 ={"Copy": "Ctrl + C",
+                    "Cut": "Ctrl + X",
+                    "Paste": "Ctrl + V",
+                    "Search": "Ctrl + F",
+                    "Select all": "Ctrl + A",
+                    "Undo": "Ctrl + Z",
+                    "Redo": "Ctrl + Y"}
+        # SET ROWS #
+        shortcutsTable1.setRowCount(len(shortcuts1))
+        shortcutsTable2.setRowCount(len(shortcuts2))
+        # TABLE 1 #
+        for row, (description, shortcut) in enumerate(shortcuts1.items()):
+            shortcutsTable1.setColumnWidth(1,154)
+            shortcutsTable1.setItem(row, 0, QTableWidgetItem(description))
+            shortcutsTable1.setItem(row, 1, QTableWidgetItem(shortcut))
+        shortcutsTable1.verticalHeader().setVisible(False)  # Ocultar la cabecera vertical
+        # TABLE 2 #
+        for row, (description, shortcut) in enumerate(shortcuts2.items()):
+            shortcutsTable2.setColumnWidth(1,154)
+            shortcutsTable2.setItem(row, 0, QTableWidgetItem(description))
+            shortcutsTable2.setItem(row, 1, QTableWidgetItem(shortcut))
+        shortcutsTable2.verticalHeader().setVisible(False)  # Ocultar la cabecera vertical
+        # TABLES STYLE #
+        moreHelpFont = QFont()
+        moreHelpFont.setPointSize(11)
+        shortcutsTable1.setFont(moreHelpFont)
+        shortcutsTable2.setFont(moreHelpFont)
+        shortcutsTable1.setStyleSheet("background-color: rgb(220,236,255);")
+        shortcutsTable2.setStyleSheet("background-color: rgb(220,236,255);")
+        shortcutsTable1.setFrameShape(QFrame.Panel)
+        shortcutsTable1.setFrameShadow(QFrame.Sunken)
+        shortcutsTable1.setLineWidth(2)
+        shortcutsTable2.setFrameShape(QFrame.Panel)
+        shortcutsTable2.setFrameShadow(QFrame.Sunken)
+        shortcutsTable2.setLineWidth(2)
+        # CONTACT INFO LABEL #
+        label = QLabel("Si usted encuentra algún problema con la aplicación puede ponerse en contacto\n"
+                       "con nosotros mandando un email a la siguiente dirección de correo electrónico:\n\n\n"
+                       "josrojrom1@alum.us.es")
+        # CONTACT INFO STYLE #
         label.setAlignment(Qt.AlignmentFlag.AlignJustify)
+        label.setFont(moreHelpFont)
+        label.setMargin(10)
+        label.setStyleSheet("background-color: rgb(220,236,255);")
+        label.setFrameShape(QFrame.Panel)
+        label.setFrameShadow(QFrame.Sunken)
+        label.setLineWidth(2)
+        # LAYOUTS #
         layout = QVBoxLayout()
+        layoutH = QHBoxLayout()
+        layoutH.addWidget(shortcutsTable1)
+        layoutH.addWidget(shortcutsTable2)
+        layout.addLayout(layoutH)
         layout.addWidget(label)
         dialog.setLayout(layout)
         dialog.exec()
     #---------------------------------------------------------------------------------------
+    ################################################
+    # CHECKING SAVE STATUS BEFORE EXITING FUNCTION #
     def checkUnsaveChanges(self):
         self.saved_changes = False
         if self.text_edit.toPlainText():
-            reply = QMessageBox.question(self, 'Unsaved changes', '¿Do you want to save your changes before exiting?',
-                                         QMessageBox.Save | QMessageBox.Discard | QMessageBox.Cancel)
+            reply = QMessageBox.question(self, 'Unsaved changes', '¿Do you want to save your changes before exiting?', QMessageBox.Save | QMessageBox.Discard | QMessageBox.Cancel)
+            # WHEN SAVE IS PRESSED #
             if reply == QMessageBox.Save:
-
                 self.saveFile()
                 self.text_edit.setPlainText('')
                 self.close()
+            # WHEN DISCARD IS PRESSED #
             elif reply == QMessageBox.Discard:
                 self.text_edit.setPlainText('')
                 self.close()
+            # WHEN CANCEL IS PRESSED #
             else:
                 pass
         else:
-            self.close()
-            
-
+            self.close()  
+    #---------------------------------------------------------------------------------------
+    ############################################
+    # CHECKING "X" BUTTON FROM WINDOW FUNCTION #
     def closeEvent(self, event):
         if self.text_edit.toPlainText():
             self.checkUnsaveChanges()
@@ -500,12 +601,22 @@ class MainWindow(QMainWindow):
         else:
             self.close
             event.accept()
-
+    #---------------------------------------------------------------------------------------
+    ##########################################
+    # ADD MARK IN THE TITLE WHEN NEW CHANGES #
     def updateWindowTitle(self):
         if self.text_edit.textChanged and not self.recentlyOpen:
             self.setWindowTitle(f"{self.initialTitle} (*)")
         else:
             self.setWindowTitle(self.initialTitle)
+    #---------------------------------------------------------------------------------------
+    ############################
+    # CONTRIBUTE LINK FUNCTION #
+    def goGitRepo(self):
+        url = QUrl("https://github.com/josrojrom1/pyNotech")
+        QDesktopServices.openUrl(url)
+    #---------------------------------------------------------------------------------------
+
 
 ########
 # MAIN #
@@ -514,4 +625,3 @@ if __name__ == "__main__":
     notepad = MainWindow()
     notepad.show()
     sys.exit(app.exec())
-
