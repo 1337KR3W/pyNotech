@@ -25,7 +25,7 @@ To run the script simply use `sudo` (make sure you are in a virtual environment)
 sudo python main.py
 ```
 
-Remember to use the `deactivate` command when you finish using the getyt tool to exit virtual environment.
+Remember to use the `deactivate` command when you finish using pyNotech to exit virtual environment.
 
 # Available functions
 ![image](https://github.com/josrojrom1/pyNotech/assets/32680720/b7c25ecf-fb27-48bc-9975-374d08320268)
