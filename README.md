@@ -1,4 +1,5 @@
 ## pyNotech v0.0.1-alpha
+![image](https://github.com/josrojrom1/pyNotech/assets/32680720/9316e2fc-fb30-45b1-a28a-81b99496083b)
 
 **pyNotech** is a digital notepad designed in Python which works for Linux and Windows. The project uses PySide6 module.
 
@@ -27,6 +28,8 @@ sudo python main.py
 Remember to use the `deactivate` command when you finish using the getyt tool to exit virtual environment.
 
 # Available functions
+![image](https://github.com/josrojrom1/pyNotech/assets/32680720/b7c25ecf-fb27-48bc-9975-374d08320268)
+
 In the actual version of pyNotech you can use the following functions:
 
 - Create new file
@@ -38,11 +41,12 @@ In the actual version of pyNotech you can use the following functions:
 - Paste
 - Cut
 - Search
+- Select all
 - Undo
 - Redo
 - Zoom in/out
 - Change appearance (dark or light theme)
-- Help section (Info, about and more help)
+- Help section (about, contribute and more help)
 
 <br/>
 <br/>
