@@ -1,5 +1,4 @@
 from PySide6.QtWidgets import QStyle
-from PySide6.QtGui import QFont, QIcon
 from PySide6.QtWidgets import QApplication
 
 #---- ICONS, Uncoment and iterate for getting all posible icons

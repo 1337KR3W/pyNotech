@@ -1,155 +1,153 @@
-from PySide6.QtWidgets import QWidgetAction, QToolBar
+from PySide6.QtWidgets import QWidgetAction, QToolBar, QMenuBar
 from PySide6.QtGui import QIcon
-from icons.icons import Icons
+from icons.icons import *
 
-class MenuBar:
-    def __init__(self):
+def create_menu_bar(parent):
 
-        ###################################
-        # DEFAULT MENU BAR OF QMainWindow #
-        menuBar = self.menuBar()
-        # ---------#
-        # TOOL BAR #
-        toolBar = QToolBar()
-        toolBar.setMovable(False)
-        self.addToolBar(toolBar)
-        #---- TOOL BAR ACTIONS
-        #------------------------- NEW ACTION
-        self.new = QWidgetAction(self)  
-        self.new.setIcon(Icons.new_icon)
-        self.new.setShortcut("Ctrl+N")
-        self.new.setIconText("New")
-        #------------------------- OPEN ACTION
-        self.open = QWidgetAction(self)
-        self.open.setIcon(Icons.open_icon)
-        self.open.setShortcut("Ctrl+O")
-        self.open.setIconText("Open")
-        #------------------------- SAVE ACTION
-        self.save = QWidgetAction(self)
-        self.save.setIcon(Icons.save_icon)
-        self.save.setShortcut("Ctrl+S")
-        self.save.setIconText("Save")
-        #------------------------- SAVE AS ACTION
-        self.saveAs = QWidgetAction(self)
-        self.saveAs.setIcon(Icons.save_icon)
-        self.saveAs.setShortcut("Ctrl+Shift+S")
-        self.saveAs.setIconText("Save as...")
-        #------------------------- EXIT ACTION
-        self.exit = QWidgetAction(self)
-        self.exit.setIcon(Icons.exit_icon)
-        self.exit.setShortcut("Ctrl+Q")
-        self.exit.setIconText("Exit")
-        #------------------------- COPY ACTION
-        self.copy = QWidgetAction(self)  
-        self.copy.setIcon(QIcon("../../resources/icons/copy_icon.PNG"))
-        self.copy.setShortcut("Ctrl+C")
-        self.copy.setIconText("Copy")
-        #------------------------- CUT ACTION
-        self.cut = QWidgetAction(self)
-        self.cut.setIcon(QIcon("../../resources/icons/cut_icon.PNG"))
-        self.cut.setShortcut("Ctrl+X")
-        self.cut.setIconText("Cut")
-        #------------------------- PASTE ACTION
-        self.paste = QWidgetAction(self)
-        self.paste.setIcon(QIcon("../../resources/icons/paste_icon.PNG"))
-        self.paste.setShortcut("Ctrl+V")
-        self.paste.setIconText("Paste")
-        #------------------------- SELECT ALL ACTION
-        self.selectAll = QWidgetAction(self)
-        self.selectAll.setIcon(Icons.selectAll_icon)
-        self.selectAll.setShortcut("Ctrl+A")
-        self.selectAll.setIconText("Select all")
-        #------------------------- SEARCH ACTION
-        self.search = QWidgetAction(self)
-        self.search.setIcon(Icons.search_icon)
-        self.search.setShortcut("Ctrl+F")
-        self.search.setIconText("Search")
-        #------------------------- CLEAN SEARCH ACTION
-        self.cleanSearch = QWidgetAction(self)
-        self.cleanSearch.setIcon(Icons.cleanSearch_icon)
-        self.cleanSearch.setShortcut("Ctrl+B")
-        self.cleanSearch.setIconText("Clean search")
-        self.cleanSearch.setDisabled(True)
-        #------------------------- UNDO ACTION
-        self.undo = QWidgetAction(self)
-        self.undo.setIcon(self.undo_icon)
-        self.undo.setShortcut("Ctrl+Z")
-        self.undo.setIconText("Undo")
-        #------------------------- REDO ACTION
-        self.redo = QWidgetAction(self)
-        self.redo.setIcon(self.redo_icon)
-        self.redo.setShortcut("Ctrl+Y")
-        self.redo.setIconText("Redo")
-        #------------------------- ZOOM IN ACTION
-        self.zoomIn = QWidgetAction(self)
-        self.zoomIn.setIcon(QIcon("../../resources/icons/zoomIn_icon.PNG"))
-        self.zoomIn.setShortcut("Ctrl++")
-        self.zoomIn.setIconText("Zoom In")
-        #------------------------- ZOOM OUT ACTION
-        self.zoomOut = QWidgetAction(self)
-        self.zoomOut.setIcon(QIcon("../../resources/icons/zoomOut_icon.PNG"))
-        self.zoomOut.setShortcut("Ctrl+-")
-        self.zoomOut.setIconText("Zoom Out")
-        #------------------------- APPEARANCE SELECT ACTION
-        self.appearance = QWidgetAction(self)
-        self.appearance.setIconText("Appearance")
-        #------------------------- DARK THEME 
-        self.darkTheme = QWidgetAction(self)
-        self.darkTheme.setIconText("Dark mode")
-        #------------------------- LIGHT THEME
-        self.lightTheme = QWidgetAction(self)
-        self.lightTheme.setIconText("Light mode")
-        #------------------------- ABOUT ACTION
-        self.about = QWidgetAction(self)
-        self.about.setIcon(self.about_icon)
-        self.about.setIconText("About")
-        #------------------------- CONTRIBUTE ACTION
-        self.contribute = QWidgetAction(self)
-        self.contribute.setIcon(QIcon("../../resources/icons/github-mark.PNG"))
-        self.contribute.setIconText("Contribute")
-        #------------------------- MORE HELP ACTION
-        self.moreHelp = QWidgetAction(self)
-        self.moreHelp.setIcon(Icons.help_icon)
-        self.moreHelp.setIconText("More help...")
-        #---------------------------------------------------------------------------------------
-        #---- TOOL BAR ADDED ACTIONS
-        toolBar.addAction(self.new)
-        toolBar.addAction(self.open)
-        toolBar.addAction(self.save)
-        toolBar.addSeparator()
-        toolBar.addAction(self.search)
-        toolBar.addAction(self.cleanSearch)
-        #---- FILE MENU BAR OPTIONS  
-        fileMenu = menuBar.addMenu('File')
-        fileMenu.addAction(self.new)
-        fileMenu.addAction(self.open)
-        fileMenu.addAction(self.save)
-        fileMenu.addAction(self.saveAs)
-        fileMenu.addSeparator()
-        fileMenu.addAction(self.exit)
-        #---- EDIT MENU BAR OPTIONS  
-        editMenu = menuBar.addMenu('Edit')
-        editMenu.addAction(self.copy)
-        editMenu.addAction(self.cut)
-        editMenu.addAction(self.paste)
-        editMenu.addSeparator()
-        editMenu.addAction(self.selectAll)
-        editMenu.addAction(self.search)
-        editMenu.addSeparator()
-        editMenu.addAction(self.undo)
-        editMenu.addAction(self.redo)
-        #---- PREFERENCES MENU BAR OPTIONS  
-        preferencesMenu = menuBar.addMenu('Preferences')
-        preferencesMenu.addAction(self.zoomIn)
-        preferencesMenu.addAction(self.zoomOut)
-        #--------------- APPEARANCE SELECT OPTION
-        self.appearance = preferencesMenu.addMenu('Appearance')
-        self.appearance.setIcon(self.appearance_icon)
-        self.appearance.addAction(self.darkTheme)
-        self.appearance.addAction(self.lightTheme)
-        #---- HELP MENU BAR OPTIONS  
-        helpMenu = menuBar.addMenu('Help')
-        helpMenu.addAction(self.about)
-        helpMenu.addAction(self.contribute)
-        helpMenu.addAction(self.moreHelp)
-        #---------------------------------------------------------------------------------------
+    ###################################
+    # DEFAULT MENU BAR OF QMainWindow #
+    menuBar = QMenuBar(parent)
+    # ---------#
+    # TOOL BAR #
+    toolBar = QToolBar()
+    toolBar.setMovable(False)
+    #---- TOOL BAR ACTIONS
+    #------------------------- NEW ACTION
+    new = QWidgetAction()  
+    new.setIcon(new_icon)
+    new.setShortcut("Ctrl+N")
+    new.setIconText("New")
+    #------------------------- OPEN ACTION
+    open = QWidgetAction()
+    open.setIcon(open_icon)
+    open.setShortcut("Ctrl+O")
+    open.setIconText("Open")
+    #------------------------- SAVE ACTION
+    save = QWidgetAction()
+    save.setIcon(save_icon)
+    save.setShortcut("Ctrl+S")
+    save.setIconText("Save")
+    #------------------------- SAVE AS ACTION
+    saveAs = QWidgetAction()
+    saveAs.setIcon(save_icon)
+    saveAs.setShortcut("Ctrl+Shift+S")
+    saveAs.setIconText("Save as...")
+    #------------------------- EXIT ACTION
+    exit = QWidgetAction()
+    exit.setIcon(exit_icon)
+    exit.setShortcut("Ctrl+Q")
+    exit.setIconText("Exit")
+    #------------------------- COPY ACTION
+    copy = QWidgetAction()  
+    copy.setIcon(QIcon("../../resources/icons/copy_icon.PNG"))
+    copy.setShortcut("Ctrl+C")
+    copy.setIconText("Copy")
+    #------------------------- CUT ACTION
+    cut = QWidgetAction()
+    cut.setIcon(QIcon("../../resources/icons/cut_icon.PNG"))
+    cut.setShortcut("Ctrl+X")
+    cut.setIconText("Cut")
+    #------------------------- PASTE ACTION
+    paste = QWidgetAction()
+    paste.setIcon(QIcon("../../resources/icons/paste_icon.PNG"))
+    paste.setShortcut("Ctrl+V")
+    paste.setIconText("Paste")
+    #------------------------- SELECT ALL ACTION
+    selectAll = QWidgetAction()
+    selectAll.setIcon(selectAll_icon)
+    selectAll.setShortcut("Ctrl+A")
+    selectAll.setIconText("Select all")
+    #------------------------- SEARCH ACTION
+    search = QWidgetAction()
+    search.setIcon(search_icon)
+    search.setShortcut("Ctrl+F")
+    search.setIconText("Search")
+    #------------------------- CLEAN SEARCH ACTION
+    cleanSearch = QWidgetAction()
+    cleanSearch.setIcon(cleanSearch_icon)
+    cleanSearch.setShortcut("Ctrl+B")
+    cleanSearch.setIconText("Clean search")
+    cleanSearch.setDisabled(True)
+    #------------------------- UNDO ACTION
+    undo = QWidgetAction()
+    undo.setIcon(undo_icon)
+    undo.setShortcut("Ctrl+Z")
+    undo.setIconText("Undo")
+    #------------------------- REDO ACTION
+    redo = QWidgetAction()
+    redo.setIcon(redo_icon)
+    redo.setShortcut("Ctrl+Y")
+    redo.setIconText("Redo")
+    #------------------------- ZOOM IN ACTION
+    zoomIn = QWidgetAction()
+    zoomIn.setIcon(QIcon("../../resources/icons/zoomIn_icon.PNG"))
+    zoomIn.setShortcut("Ctrl++")
+    zoomIn.setIconText("Zoom In")
+    #------------------------- ZOOM OUT ACTION
+    zoomOut = QWidgetAction()
+    zoomOut.setIcon(QIcon("../../resources/icons/zoomOut_icon.PNG"))
+    zoomOut.setShortcut("Ctrl+-")
+    zoomOut.setIconText("Zoom Out")
+    #------------------------- APPEARANCE SELECT ACTION
+    appearance = QWidgetAction()
+    appearance.setIconText("Appearance")
+    #------------------------- DARK THEME 
+    darkTheme = QWidgetAction()
+    darkTheme.setIconText("Dark mode")
+    #------------------------- LIGHT THEME
+    lightTheme = QWidgetAction()
+    lightTheme.setIconText("Light mode")
+    #------------------------- ABOUT ACTION
+    about = QWidgetAction()
+    about.setIcon(about_icon)
+    about.setIconText("About")
+    #------------------------- CONTRIBUTE ACTION
+    contribute = QWidgetAction()
+    contribute.setIcon(QIcon("../../resources/icons/github-mark.PNG"))
+    contribute.setIconText("Contribute")
+    #------------------------- MORE HELP ACTION
+    moreHelp = QWidgetAction()
+    moreHelp.setIcon(help_icon)
+    moreHelp.setIconText("More help...")
+    #---------------------------------------------------------------------------------------
+    #---- TOOL BAR ADDED ACTIONS
+    toolBar.addAction(new)
+    toolBar.addAction(open)
+    toolBar.addAction(save)
+    toolBar.addSeparator()
+    toolBar.addAction(search)
+    toolBar.addAction(cleanSearch)
+    #---- FILE MENU BAR OPTIONS  
+    fileMenu = menuBar.addMenu('File')
+    fileMenu.addAction(new)
+    fileMenu.addAction(open)
+    fileMenu.addAction(save)
+    fileMenu.addAction(saveAs)
+    fileMenu.addSeparator()
+    fileMenu.addAction(exit)
+    #---- EDIT MENU BAR OPTIONS  
+    editMenu = menuBar.addMenu('Edit')
+    editMenu.addAction(copy)
+    editMenu.addAction(cut)
+    editMenu.addAction(paste)
+    editMenu.addSeparator()
+    editMenu.addAction(selectAll)
+    editMenu.addAction(search)
+    editMenu.addSeparator()
+    editMenu.addAction(undo)
+    editMenu.addAction(redo)
+    #---- PREFERENCES MENU BAR OPTIONS  
+    preferencesMenu = menuBar.addMenu('Preferences')
+    preferencesMenu.addAction(zoomIn)
+    preferencesMenu.addAction(zoomOut)
+    #--------------- APPEARANCE SELECT OPTION
+    appearance = preferencesMenu.addMenu('Appearance')
+    appearance.setIcon(appearance_icon)
+    appearance.addAction(darkTheme)
+    appearance.addAction(lightTheme)
+    #---- HELP MENU BAR OPTIONS  
+    helpMenu = menuBar.addMenu('Help')
+    helpMenu.addAction(about)
+    helpMenu.addAction(contribute)
+    helpMenu.addAction(moreHelp)
+    #---------------------------------------------------------------------------------------
