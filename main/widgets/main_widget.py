@@ -1,4 +1,5 @@
 from PySide6.QtWidgets import QVBoxLayout, QWidget
+from controllers.main_controller import MainWindow
 
 class MainWidget:
     def __init__(self):
@@ -6,6 +7,6 @@ class MainWidget:
         ##########################
         # MAIN WIDGET AND LAYOUT #
         main_widget = QWidget()
-        self.setCentralWidget(main_widget)
+        MainWindow.setCentralWidget(main_widget)
         main_layout = QVBoxLayout(main_widget)
         #---------------------------------------------------------------------------------------

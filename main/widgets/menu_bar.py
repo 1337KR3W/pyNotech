@@ -1,7 +1,6 @@
 from PySide6.QtWidgets import QWidgetAction, QToolBar
 from PySide6.QtGui import QIcon
 from icons.icons import Icons
-import resources
 
 class MenuBar:
     def __init__(self):
