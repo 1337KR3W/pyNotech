@@ -4,6 +4,7 @@ from icons import *
 from themes import dark
 from ui.menu_bar.menu_bar import MenuBar
 from ui.tool_bar.tool_bar import ToolBar
+from ui.bottom_bar.botton_bar import BottomBar
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -44,7 +45,12 @@ class MainWindow(QMainWindow):
         # TOOL BAR
         self.toolBar = ToolBar(self)
         self.addToolBar(self.toolBar)
+        
         # BOTTOM BAR
+        self.bottomBar = BottomBar(self)
+        main_layout.addLayout(self.bottomBar)
+        #add_widget(main_layout, self.bottomBar)
+
         
 
 if __name__ == "__main__":

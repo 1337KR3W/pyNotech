@@ -1,14 +1,12 @@
 from PySide6.QtWidgets import QHBoxLayout, QLabel, QFrame
-from PySide6.QtCore import Qt
-from controllers.main_controller import MainWindow
-from functions.update_info import updateInfo
+from PySide6.QtCore import Qt, QTimer
+from datetime import *
+import platform
+import locale
 
-class BottomBar:
-    def __init__(self):
-                
-        ########################
-        # BOTTON BAR WITH INFO #
-        bottomLayout = QHBoxLayout()
+class BottomBar(QHBoxLayout):
+    def __init__(self, parent):
+        super().__init__(parent)
         #---- DATE LABEL
         self.dateInfo = QLabel()
         #---- OS LABEL
@@ -16,7 +14,7 @@ class BottomBar:
         #---- LANGUAJE LABEL
         self.langTag = QLabel()
         #---- UPDATE INFO CALL FUNCTION
-        updateInfo()
+        self.updateInfo()
         #---- ACTUAL HOVER INFO
         self.hoverInfo = QLabel()
         self.hoverInfo.setAlignment(Qt.AlignmentFlag.AlignLeft)
@@ -28,14 +26,29 @@ class BottomBar:
         separator2.setFrameShape(QFrame.VLine)
         separator2.setFrameShadow(QFrame.Sunken)
         #---- ADDING WIDGETS TO BOTTOM LAYOUT
-        bottomLayout.addWidget(self.osTag)
-        bottomLayout.addWidget(separator1)
-        bottomLayout.addWidget(self.langTag)
-        bottomLayout.addWidget(separator2)
-        bottomLayout.addWidget(self.dateInfo)
-        bottomLayout.addWidget(self.hoverInfo)
-        bottomLayout.setAlignment(Qt.AlignmentFlag.AlignRight)
-        bottomLayout.setSpacing(15) 
-        #---- ADDING BOTTOM LAYOUT TO MAIN LAYOUT
-        MainWindow.main_layout.addLayout(bottomLayout)
+        self.addWidget(self.osTag)
+        self.addWidget(separator1)
+        self.addWidget(self.langTag)
+        self.addWidget(separator2)
+        self.addWidget(self.dateInfo)
+        self.addWidget(self.hoverInfo)
+        self.setAlignment(Qt.AlignmentFlag.AlignRight)
+        self.setSpacing(15) 
+    ####################################
+    # UPDATE BOTTOM LAYOUT DATA LABELS #
+    def updateInfo(self):
+        # DATE LABEL DATA
+        self.dateInfo.setText(datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.updateInfo)
+        self.timer.start(1000)
+        # OS LABEL DATA
+        system = platform.system()
+        release = platform.release()
+        self.osTag.setText(f"{system} {release}")
+        # LANGUAJE LABEL DATA
+        language, _ = locale.getlocale()
+        self.langTag.setText(f"{language}")
+    #---------------------------------------------------------------------------------------    
+        
         #---------------------------------------------------------------------------------------
