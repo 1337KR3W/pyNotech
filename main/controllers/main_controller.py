@@ -1,6 +1,5 @@
 from PySide6.QtWidgets import QMainWindow, QTextEdit, QWidget, QVBoxLayout, QHBoxLayout
 from PySide6.QtGui import QFont
-from functions.create_main_widget import create_main_widget
 from icons import *
 from themes import dark
 from ui.menu_bar.menu_bar import MenuBar
@@ -36,11 +35,14 @@ class MainWindow(QMainWindow):
 
         add_widget(main_layout, self.text_edit)
         
-        #self.setCentralWidget(create_main_widget(self.text_edit))
 
         # MENU BAR
         self.menuBar = MenuBar(self)
         self.setMenuBar(self.menuBar)
+
+        # TOOL BAR
+
+        # BOTTOM BAR
         
 
 if __name__ == "__main__":
