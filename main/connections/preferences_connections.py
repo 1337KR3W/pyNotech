@@ -1,4 +1,4 @@
-class ParametersConnections:
+class PreferencesConnections:
     def __init__(self):
 
         #---- Parameters CONNECTIONS
