@@ -3,6 +3,7 @@ from PySide6.QtGui import QFont
 from icons import *
 from themes import dark
 from ui.menu_bar.menu_bar import MenuBar
+from ui.tool_bar.tool_bar import ToolBar
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -41,7 +42,8 @@ class MainWindow(QMainWindow):
         self.setMenuBar(self.menuBar)
 
         # TOOL BAR
-
+        self.toolBar = ToolBar(self)
+        self.addToolBar(self.toolBar)
         # BOTTOM BAR
         
 
