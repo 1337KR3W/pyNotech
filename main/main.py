@@ -3,6 +3,7 @@ from controllers.main_controller import MainWindow
 import sys
 
 def main():
+
     app = QApplication(sys.argv)
     notepad = MainWindow()
     notepad.show()

@@ -1,4 +1,4 @@
-from widgets.menu_bar import cop
+from main.ui.menu_bar.menu_bar import cop
 
 class EditConnections:
     def __init__(self):
