@@ -1,6 +1,7 @@
 from PySide6.QtWidgets import QMenu, QWidgetAction
 from PySide6.QtGui import QIcon
 from icons.icons import Icons
+import os
 
 class HelpMenu(QMenu):
     def __init__(self, parent):
@@ -9,6 +10,8 @@ class HelpMenu(QMenu):
         about_icon = icons.about_icon()
         help_icon = icons.help_icon()
         self.setTitle("Help")
+        main_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+
 
         #------------------------- ABOUT ACTION
         self.about = QWidgetAction(self)
@@ -17,7 +20,7 @@ class HelpMenu(QMenu):
         self.addAction(self.about)
         #------------------------- CONTRIBUTE ACTION
         self.contribute = QWidgetAction(self)
-        self.contribute.setIcon(QIcon("../../resources/icons/github-mark.PNG"))
+        self.contribute.setIcon(QIcon(os.path.join(main_dir, 'resources', 'icons', 'github-mark.PNG')))
         self.contribute.setIconText("Contribute")
         self.addAction(self.contribute)
         #------------------------- MORE HELP ACTION
