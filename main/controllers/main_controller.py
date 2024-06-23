@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QMainWindow, QTextEdit, QWidget, QVBoxLayout, QHBoxLayout
 from PySide6.QtGui import QFont
 from icons import *
-from themes import dark
+from themes import dark, light
 from ui.menu_bar.menu_bar import MenuBar
 from ui.tool_bar.tool_bar import ToolBar
 from ui.bottom_bar.botton_bar import BottomBar
@@ -16,7 +16,8 @@ class MainWindow(QMainWindow):
         self.current_font_size = 14
         self.custom_font = QFont()
         self.custom_font.setPointSize(self.current_font_size)
-        self.setStyleSheet(dark.darkThemeStyle)
+        self.setStyleSheet(light.lightThemeStyle)
+        #self.setStyleSheet(dark.darkThemeStyle)
         self.recentlyOpen = False
         self.text_edit = QTextEdit()
         self.text_edit.setViewportMargins(8, 6, 8, 8)

@@ -11,8 +11,6 @@ class HelpMenu(QMenu):
         help_icon = icons.help_icon()
         self.setTitle("Help")
         main_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-
-
         #------------------------- ABOUT ACTION
         self.about = QWidgetAction(self)
         self.about.setIcon(about_icon)

@@ -14,7 +14,6 @@ class EditMenu(QMenu):
         cleanSearch_icon = icons.cleanSearch_icon() 
         self.setTitle("Edit")
         main_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-
         #------------------------- COPY ACTION
         self.copy = QWidgetAction(self)  
         self.copy.setIcon(QIcon(os.path.join(main_dir, 'resources', 'icons', 'copy_icon.PNG')))

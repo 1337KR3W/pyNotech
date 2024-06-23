@@ -10,7 +10,6 @@ class PreferencesMenu(QMenu):
         appearance_icon = icons.appearance_icon()
         self.setTitle("Preferences")
         main_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-
         #------------------------- ZOOM IN ACTION
         self.zoomIn = QWidgetAction(self)
         self.zoomIn.setIcon(QIcon(os.path.join(main_dir, 'resources', 'icons', 'zoomIn_icon.PNG')))
@@ -24,22 +23,13 @@ class PreferencesMenu(QMenu):
         self.zoomOut.setIconText("Zoom Out")
         self.addAction(self.zoomOut)
         #------------------------- APPEARANCE SELECT ACTION
-        #self.appearance = QWidgetAction(self)
-        
-        #self.appearance.setIconText("Appearance")
-        #self.addAction(self.appearance)
-
-
         self.appearance = self.addMenu('Appearance')
         self.appearance.setIcon(appearance_icon)
-
-
         #------------------------- DARK THEME 
         self.darkTheme = QWidgetAction(self)
         self.darkTheme.setIconText("Dark mode")
+        self.appearance.addAction(self.darkTheme)
         #------------------------- LIGHT THEME
         self.lightTheme = QWidgetAction(self)
         self.lightTheme.setIconText("Light mode")
-        
-        self.appearance.addAction(self.darkTheme)
         self.appearance.addAction(self.lightTheme)
