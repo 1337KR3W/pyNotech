@@ -7,6 +7,7 @@ from ui.menu_bar.help_menu import HelpMenu
 class MenuBar(QMenuBar):
     def __init__(self, parent):
         super().__init__(parent)
+        self.parent = parent
 
         # FILE MENU BAR OPTION
         fileMenu = FileMenu(self)
@@ -17,8 +18,8 @@ class MenuBar(QMenuBar):
         self.addMenu(editMenu)
 
         # PREFERENCES MENU BAR OPTION
-        preferencesMenu = PreferencesMenu(self)
-        self.addMenu(preferencesMenu)
+        self.preferencesMenu = PreferencesMenu(self.parent)
+        self.addMenu(self.preferencesMenu)
 
         # HELP MENU BAR OPTION
         helpMenu = HelpMenu(self)

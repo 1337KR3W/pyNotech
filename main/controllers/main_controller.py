@@ -1,10 +1,11 @@
 from PySide6.QtWidgets import QMainWindow, QTextEdit, QWidget, QVBoxLayout, QHBoxLayout
 from PySide6.QtGui import QFont
 from icons import *
-from themes import dark, light
 from ui.menu_bar.menu_bar import MenuBar
 from ui.tool_bar.tool_bar import ToolBar
 from ui.bottom_bar.botton_bar import BottomBar
+from themes.dark import setDarkTheme
+from themes.light import setLightTheme
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -16,9 +17,16 @@ class MainWindow(QMainWindow):
         self.current_font_size = 14
         self.custom_font = QFont()
         self.custom_font.setPointSize(self.current_font_size)
-        self.setStyleSheet(light.lightThemeStyle)
-        #self.setStyleSheet(dark.darkThemeStyle)
         self.recentlyOpen = False
+        
+        # THEMES #
+        #setLightTheme(self)
+        self.setDarkTheme = setDarkTheme
+        self.setLightTheme = setLightTheme
+        self.changeToDarkTheme = self.changeToDarkTheme
+        self.changeToLightTheme = self.changeToLightTheme
+
+        # TEXT EDITOR #
         self.text_edit = QTextEdit()
         self.text_edit.setViewportMargins(8, 6, 8, 8)
         self.text_edit.setFrameStyle(0)
@@ -37,7 +45,6 @@ class MainWindow(QMainWindow):
             layout.addLayout(hbox)
 
         add_widget(main_layout, self.text_edit)
-        
 
         # MENU BAR
         self.menuBar = MenuBar(self)
@@ -50,9 +57,14 @@ class MainWindow(QMainWindow):
         # BOTTOM BAR
         self.bottomBar = BottomBar(self)
         main_layout.addLayout(self.bottomBar)
-        #add_widget(main_layout, self.bottomBar)
 
-        
+    def changeToDarkTheme(self):
+        self.setDarkTheme(self)
+
+    def changeToLightTheme(self):
+        self.setLightTheme(self)
+            
+    
 
 if __name__ == "__main__":
     pass
