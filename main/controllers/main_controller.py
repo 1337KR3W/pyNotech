@@ -16,13 +16,11 @@ from functions.zoom_out_editor import zoomOutEditor
 from functions.show_about import showAbout
 from functions.go_git_repo import goGitRepo
 from functions.show_more_help import showMoreHelp
+from functions.update_window_title import updateWindowTitle
 from connections.file_connections import setup_file_connections
 from connections.edit_connections import setup_edit_connections
 from connections.preferences_connections import setup_preferences_connections
 from connections.help_connections import setup_help_connections
-
-
-
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -50,7 +48,7 @@ class MainWindow(QMainWindow):
         self.text_edit.setViewportMargins(8, 6, 8, 8)
         self.text_edit.setFrameStyle(0)
         self.text_edit.setFont(self.custom_font)
-        #self.text_edit.textChanged.connect(self.updateWindowTitle)
+        self.text_edit.textChanged.connect(self.update_window_title)
         add_widget(main_layout, self.text_edit)
         #----------------------------------- MENU BAR
         self.menuBar = MenuBar(self)
@@ -146,4 +144,7 @@ class MainWindow(QMainWindow):
     #----------------------------------- More help call
     def help_moreHelp(self):
         showMoreHelp(self)
+    #----------------------------------- Update window title call
+    def update_window_title(self):
+        updateWindowTitle(self)
     
