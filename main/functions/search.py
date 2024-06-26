@@ -1,4 +1,3 @@
-import sys
 from PySide6.QtWidgets import QInputDialog
 from PySide6.QtGui import QTextCursor, QBrush, QTextCharFormat, QColor
 from PySide6.QtCore import QRegularExpression
@@ -13,7 +12,7 @@ def searchAndHighlight(self):
         # FORMAT MATCHES COLORING #
         format = QTextCharFormat()
         format.setBackground(QBrush(QColor("yellow")))
-        self.cleanSearch.setDisabled(False)
+        self.menuBar.editMenu.cleanSearch.setDisabled(False)
         # REGEX SETUP #
         re = QRegularExpression(pattern)
         # REGULAR EXPRESSION MATCH ITERATOR #

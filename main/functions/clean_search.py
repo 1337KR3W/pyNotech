@@ -9,5 +9,5 @@ def cleanSearchTerms(self):
     format.setFontUnderline(False)
     cursor.setCharFormat(format)
     self.text_edit.setFont(self.custom_font)
-    self.cleanSearch.setDisabled(True)
+    self.menuBar.editMenu.cleanSearch.setDisabled(True)
 #---------------------------------------------------------------------------------------

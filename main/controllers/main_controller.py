@@ -7,6 +7,8 @@ from themes.theme_manager import ThemeManager
 from functions.save_file import saveFile
 from functions.save_file_as import saveFileAs
 from functions.open_file import openFile
+from functions.search import searchAndHighlight
+from functions.clean_search import cleanSearchTerms
 from connections.file_connections import setup_file_connections
 from connections.edit_connections import setup_edit_connections
 
@@ -59,28 +61,45 @@ class MainWindow(QMainWindow):
             self.menuBar.preferencesMenu,
             self.menuBar.helpMenu
         ) 
-        self.theme_manager.set_light_theme() # Default Light theme  
-    # Dark theme call function            
+        # Default Light theme  
+        self.theme_manager.set_light_theme()
+    #----------------------------------- Dark theme call function            
     def changeToDarkTheme(self):
         self.theme_manager.set_dark_theme()
-    # Light theme call function
+    #----------------------------------- Light theme call function
     def changeToLightTheme(self):
         self.theme_manager.set_light_theme()
-    # Save file call
+    #----------------------------------- Save file call
     def save_file(self):
         saveFile(self)
-    # Save file as call
+    #----------------------------------- Save file as call
     def save_file_as(self):
         saveFileAs(self)
-    # Open file call
+    #----------------------------------- Open file call
     def open_file(self):
         openFile(self)
-    # Copy text call
+    #----------------------------------- Copy text call
     def copy_text(self):
         self.text_edit.copy()
-    # Cut text call
+    #----------------------------------- Cut text call
     def cut_text(self):
         self.text_edit.cut()
-    # Paste text call
+    #----------------------------------- Paste text call
     def paste_text(self):
         self.text_edit.paste()
+    #----------------------------------- Select all text call
+    def select_all_text(self):
+        self.text_edit.selectAll()
+    #----------------------------------- Search text call
+    def search_and_highlight(self):
+        searchAndHighlight(self)
+    #----------------------------------- Clean text call
+    def clean_search_terms(self):
+        cleanSearchTerms(self)
+    #----------------------------------- Undo text call
+    def undo_text(self):
+        self.text_edit.undo()
+    #----------------------------------- Redo text call
+    def redo_text(self):
+        self.text_edit.redo()
+    
