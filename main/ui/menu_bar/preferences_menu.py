@@ -32,9 +32,4 @@ class PreferencesMenu(QMenu):
         self.lightTheme = QWidgetAction(self)
         self.lightTheme.setIconText("Light mode")
         self.appearance.addAction(self.lightTheme)
-        # CONNECTIONS #
-        self.darkTheme.triggered.connect(parent.changeToDarkTheme)
-        self.lightTheme.triggered.connect(parent.changeToLightTheme)
-        self.zoomIn.triggered.connect(parent.zoom_in)
-        self.zoomOut.triggered.connect(parent.zoom_out)
         

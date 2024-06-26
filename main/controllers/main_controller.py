@@ -13,8 +13,14 @@ from functions.search import searchAndHighlight
 from functions.clean_search import cleanSearchTerms
 from functions.zoom_in_editor import zoomInEditor
 from functions.zoom_out_editor import zoomOutEditor
+from functions.show_about import showAbout
+from functions.go_git_repo import goGitRepo
+from functions.show_more_help import showMoreHelp
 from connections.file_connections import setup_file_connections
 from connections.edit_connections import setup_edit_connections
+from connections.preferences_connections import setup_preferences_connections
+from connections.help_connections import setup_help_connections
+
 
 
 
@@ -58,6 +64,8 @@ class MainWindow(QMainWindow):
         #----------------------------------- CONNECTIONS
         setup_file_connections(self)
         setup_edit_connections(self)
+        setup_preferences_connections(self)
+        setup_help_connections(self)
         #----------------------------------- THEMES 
         self.theme_manager = ThemeManager(
             self,             
@@ -123,12 +131,19 @@ class MainWindow(QMainWindow):
     #----------------------------------- Redo text call
     def redo_text(self):
         self.text_edit.redo()
-
     #----------------------------------- Redo text call
     def zoom_in(self):
         zoomInEditor(self)
-
     #----------------------------------- Redo text call
     def zoom_out(self):
         zoomOutEditor(self)
+    #----------------------------------- Show about call
+    def help_about(self):
+        showAbout(self)
+    #----------------------------------- Contribute call
+    def help_contribute(self):
+        goGitRepo(self)
+    #----------------------------------- More help call
+    def help_moreHelp(self):
+        showMoreHelp(self)
     

@@ -1,13 +1,16 @@
 from PySide6.QtWidgets import QVBoxLayout, QLabel, QFrame, QDialog
 from PySide6.QtGui import QFont
 from PySide6.QtCore import Qt
+from icons.icons import Icons
 
 #################
 # ABOUT WINDOWN #
 def showAbout(self):
+    icons = Icons()
+    about_icon = icons.about_icon()
     dialog = QDialog()
     dialog.setWindowTitle("About")
-    dialog.setWindowIcon(self.about_icon)
+    dialog.setWindowIcon(about_icon)
     dialog.setModal(True)
     dialog.setStyleSheet("background-color: rgb(175,210,255)")
     aboutFont = QFont()

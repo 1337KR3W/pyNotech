@@ -1,12 +1,4 @@
-from main.functions.show_about import showAbout
-from main.functions.show_more_help import showMoreHelp
-from main.functions.go_git_repo import goGitRepo
-
-class HelpConnections:
-    def __init__(self):
-
-        #---- Help CONNECTIONS
-        self.about.triggered.connect(showAbout)
-        self.moreHelp.triggered.connect(showMoreHelp)
-        self.contribute.triggered.connect(goGitRepo)
-        #---------------------------------------------------------------------------------------
+def setup_help_connections(main_window):
+    main_window.menuBar.helpMenu.about.triggered.connect(main_window.help_about)
+    main_window.menuBar.helpMenu.contribute.triggered.connect(main_window.help_contribute)
+    main_window.menuBar.helpMenu.moreHelp.triggered.connect(main_window.help_moreHelp)
