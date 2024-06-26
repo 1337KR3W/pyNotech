@@ -17,19 +17,16 @@ class ToolBar(QToolBar):
         #------------------------- NEW ACTION
         self.new = QWidgetAction(self)  
         self.new.setIcon(new_icon)
-        self.new.setShortcut("Ctrl+N")
         self.new.setIconText("New")
         self.addAction(self.new)
         #------------------------- OPEN ACTION
         self.open = QWidgetAction(self)
         self.open.setIcon(open_icon)
-        self.open.setShortcut("Ctrl+O")
         self.open.setIconText("Open")
         self.addAction(self.open)
         #------------------------- SAVE ACTION
         self.save = QWidgetAction(self)
         self.save.setIcon(save_icon)
-        self.save.setShortcut("Ctrl+S")
         self.save.setIconText("Save")
         self.addAction(self.save)
 
@@ -37,14 +34,15 @@ class ToolBar(QToolBar):
 
         self.search_action = QWidgetAction(self)
         self.search_action.setIcon(search_icon)
-        self.search_action.setShortcut("Ctrl+F")
         self.search_action.setIconText("Search")
         self.addAction(self.search_action)
 
         self.cleanSearch = QWidgetAction(self)
         self.cleanSearch.setIcon(cleanSearch_icon)
-        self.cleanSearch.setShortcut("Ctrl+B")
         self.cleanSearch.setIconText("Clean search")
         self.cleanSearch.setDisabled(True)
         self.addAction(self.cleanSearch)
+        # CONNECTIONS #
+        self.save.triggered.connect(parent.save_file)
+
         self.show()

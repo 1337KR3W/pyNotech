@@ -1,3 +1,4 @@
+from functions.save_file_as import saveFileAs
 ######################
 # SAVE FILE FUNCTION #
 def saveFile(self):
@@ -8,4 +9,4 @@ def saveFile(self):
             self.initialTitle = str(self.current_path)
             self.setWindowTitle(self.initialTitle)
     else:
-        self.saveFileAs()
+        saveFileAs(self)

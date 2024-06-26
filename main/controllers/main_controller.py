@@ -4,6 +4,10 @@ from ui.menu_bar.menu_bar import MenuBar
 from ui.tool_bar.tool_bar import ToolBar
 from ui.bottom_bar.botton_bar import BottomBar
 from themes.theme_manager import ThemeManager
+from functions.save_file import saveFile
+from functions.save_file_as import saveFileAs
+from connections.file_connections import setup_file_connections
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -42,6 +46,8 @@ class MainWindow(QMainWindow):
         #----------------------------------- BOTTOM BAR
         self.bottomBar = BottomBar(self)
         main_layout.addLayout(self.bottomBar)
+        #----------------------------------- CONNECTIONS
+        setup_file_connections(self)
         #----------------------------------- THEMES 
         self.theme_manager = ThemeManager(
             self,             
@@ -56,3 +62,10 @@ class MainWindow(QMainWindow):
     # Light theme call function
     def changeToLightTheme(self):
         self.theme_manager.set_light_theme()
+    # Save file call
+    def save_file(self):
+        saveFile(self)
+    # Save file as call
+    def save_file_as(self):
+        saveFileAs(self)
+

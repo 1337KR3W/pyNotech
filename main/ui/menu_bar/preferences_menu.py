@@ -1,6 +1,5 @@
 from PySide6.QtWidgets import QMenu, QWidgetAction
 from icons.icons import Icons
-from themes.theme_manager import ThemeManager
 
 class PreferencesMenu(QMenu):
     def __init__(self, parent):
