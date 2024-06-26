@@ -8,7 +8,7 @@ def checkUnsaveChanges(self):
         reply = QMessageBox.question(self, 'Unsaved changes', '¿Do you want to save your changes before exiting?', QMessageBox.Save | QMessageBox.Discard | QMessageBox.Cancel)
         # WHEN SAVE IS PRESSED #
         if reply == QMessageBox.Save:
-            self.saveFile()
+            self.save_file()
             self.text_edit.setPlainText('')
             self.close()
         # WHEN DISCARD IS PRESSED #

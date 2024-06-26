@@ -40,7 +40,7 @@ class ToolBar(QToolBar):
         self.cleanSearch.setIconText("Clean search")
         self.cleanSearch.setDisabled(True)
         self.addAction(self.cleanSearch)
-        # CONNECTIONS #
+        #------------------------- CONNECTIONS
         self.save.triggered.connect(parent.save_file)
         self.open.triggered.connect(parent.open_file)
         self.search_action.triggered.connect(parent.search_and_highlight)

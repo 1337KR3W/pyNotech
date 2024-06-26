@@ -8,8 +8,10 @@ from functions.new_file import newFile
 from functions.save_file import saveFile
 from functions.save_file_as import saveFileAs
 from functions.open_file import openFile
+from functions.check_unsaved_changes import checkUnsaveChanges
 from functions.search import searchAndHighlight
 from functions.clean_search import cleanSearchTerms
+from functions.close_event import closeEvent
 from connections.file_connections import setup_file_connections
 from connections.edit_connections import setup_edit_connections
 
@@ -70,7 +72,7 @@ class MainWindow(QMainWindow):
     #----------------------------------- Light theme call function
     def changeToLightTheme(self):
         self.theme_manager.set_light_theme()
-    
+    #----------------------------------- New file call
     def new_file(self):
         newFile(self)
     #----------------------------------- Save file call
@@ -82,6 +84,18 @@ class MainWindow(QMainWindow):
     #----------------------------------- Open file call
     def open_file(self):
         openFile(self)
+    #----------------------------------- Exit app call
+    def exit_app(self):
+        checkUnsaveChanges(self)
+    #----------------------------------- Close app call
+    # CHECKING "X" BUTTON FROM WINDOW FUNCTION #
+    def closeEvent(self, event):
+        if self.text_edit.toPlainText():
+            self.exit_app()
+            event.ignore()
+        else:
+            self.close
+            event.accept()
     #----------------------------------- Copy text call
     def copy_text(self):
         self.text_edit.copy()
