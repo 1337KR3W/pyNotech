@@ -1,34 +1,34 @@
 from PySide6.QtWidgets import QMenu, QWidgetAction
-from PySide6.QtGui import QIcon
 from icons.icons import Icons
-import os
 
 class EditMenu(QMenu):
     def __init__(self, parent):
         super().__init__(parent)
         icons = Icons()
+        copy_icon = icons.copy_icon()
+        cut_icon = icons.cut_icon()
+        paste_icon = icons.paste_icon()
         undo_icon =icons.undo_icon()
         redo_icon = icons.redo_icon()
         search_icon = icons.search_icon()
         selectAll_icon = icons.selectAll_icon()
         cleanSearch_icon = icons.cleanSearch_icon() 
         self.setTitle("Edit")
-        main_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
         #------------------------- COPY ACTION
         self.copy = QWidgetAction(self)  
-        self.copy.setIcon(QIcon(os.path.join(main_dir, 'resources', 'icons', 'copy_icon.PNG')))
+        self.copy.setIcon(copy_icon)
         self.copy.setShortcut("Ctrl+C")
         self.copy.setIconText("Copy")
         self.addAction(self.copy)
         #------------------------- CUT ACTION
         self.cut = QWidgetAction(self)
-        self.cut.setIcon(QIcon(os.path.join(main_dir, 'resources', 'icons', 'cut_icon.PNG')))
+        self.cut.setIcon(cut_icon)
         self.cut.setShortcut("Ctrl+X")
         self.cut.setIconText("Cut")
         self.addAction(self.cut)
         #------------------------- PASTE ACTION
         self.paste = QWidgetAction(self)
-        self.paste.setIcon(QIcon(os.path.join(main_dir, 'resources', 'icons', 'paste_icon.PNG')))
+        self.paste.setIcon(paste_icon)
         self.paste.setShortcut("Ctrl+V")
         self.paste.setIconText("Paste")
         self.addAction(self.paste)
