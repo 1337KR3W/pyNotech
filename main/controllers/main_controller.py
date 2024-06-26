@@ -23,6 +23,7 @@ from connections.edit_connections import setup_edit_connections
 from connections.preferences_connections import setup_preferences_connections
 from connections.help_connections import setup_help_connections
 from widgets.text_edit import TextEdit
+from widgets.main_widget import MainWidget
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -37,9 +38,9 @@ class MainWindow(QMainWindow):
         self.custom_font.setPointSize(self.current_font_size)
         self.recentlyOpen = False
         #----------------------------------- MAIN WIDGET AND LAYOUT 
-        main_widget = QWidget()
-        self.setCentralWidget(main_widget)
-        main_layout = QVBoxLayout(main_widget)
+        self.main_widget = MainWidget(self)
+        self.setCentralWidget(self.main_widget)
+        main_layout = QVBoxLayout(self.main_widget)
         #----------------------------------- TEXT EDITOR 
         self.text_edit = TextEdit(self)
         add_widget(main_layout, self.text_edit)

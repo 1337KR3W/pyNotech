@@ -19,4 +19,3 @@ def openFile(self):
             print("File not found")
     else:
         print("No file selected")
-#---------------------------------------------------------------------------------------

@@ -9,4 +9,3 @@ def saveFileAs(self):
     self.current_path = pathName[0]
     self.initialTitle = pathName[0]
     self.setWindowTitle(pathName[0])               
-#---------------------------------------------------------------------------------------

@@ -82,4 +82,3 @@ def showMoreHelp(self):
     layout.addWidget(label)
     dialog.setLayout(layout)
     dialog.exec()
-#---------------------------------------------------------------------------------------

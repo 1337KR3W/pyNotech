@@ -5,4 +5,3 @@ def updateWindowTitle(self):
         self.setWindowTitle(f"{self.initialTitle} (*)")
     else:
         self.setWindowTitle(self.initialTitle)
-#---------------------------------------------------------------------------------------

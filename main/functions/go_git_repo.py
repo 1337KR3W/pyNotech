@@ -6,4 +6,3 @@ from PySide6.QtCore import QUrl
 def goGitRepo(self):
     url = QUrl("https://github.com/josrojrom1/pyNotech")
     QDesktopServices.openUrl(url)
-#---------------------------------------------------------------------------------------

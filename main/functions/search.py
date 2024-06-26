@@ -2,7 +2,6 @@ from PySide6.QtWidgets import QInputDialog
 from PySide6.QtGui import QTextCursor, QBrush, QTextCharFormat, QColor
 from PySide6.QtCore import QRegularExpression
 
-
 #####################
 # SEARCH FUNCTION #
 def searchAndHighlight(self):
@@ -27,4 +26,3 @@ def searchAndHighlight(self):
             cursor.setPosition(match.capturedStart(), QTextCursor.MoveAnchor)
             cursor.setPosition(match.capturedEnd(), QTextCursor.KeepAnchor)
             cursor.mergeCharFormat(format)
-#---------------------------------------------------------------------------------------

@@ -11,4 +11,3 @@ def cleanSearchTerms(self):
     self.text_edit.setFont(self.custom_font)
     self.menuBar.editMenu.cleanSearch.setDisabled(True)
     self.toolBar.cleanSearch.setDisabled(True)
-#---------------------------------------------------------------------------------------

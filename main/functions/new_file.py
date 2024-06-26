@@ -5,4 +5,3 @@ def newFile(self):
     self.setWindowTitle("Untitled")
     self.current_path = None
     self.text_edit.setFontPointSize(14)
-#---------------------------------------------------------------------------------------
