@@ -4,6 +4,7 @@ from ui.menu_bar.menu_bar import MenuBar
 from ui.tool_bar.tool_bar import ToolBar
 from ui.bottom_bar.botton_bar import BottomBar
 from themes.theme_manager import ThemeManager
+from functions.add_widget import add_widget
 from functions.new_file import newFile
 from functions.save_file import saveFile
 from functions.save_file_as import saveFileAs
@@ -21,6 +22,7 @@ from connections.file_connections import setup_file_connections
 from connections.edit_connections import setup_edit_connections
 from connections.preferences_connections import setup_preferences_connections
 from connections.help_connections import setup_help_connections
+from widgets.text_edit import TextEdit
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -38,17 +40,8 @@ class MainWindow(QMainWindow):
         main_widget = QWidget()
         self.setCentralWidget(main_widget)
         main_layout = QVBoxLayout(main_widget)
-        #----------------------------------- ADD WIDGETS FUNCTION
-        def add_widget(layout, widget):
-            hbox = QHBoxLayout()
-            hbox.addWidget(widget)
-            layout.addLayout(hbox)
         #----------------------------------- TEXT EDITOR 
-        self.text_edit = QTextEdit()
-        self.text_edit.setViewportMargins(8, 6, 8, 8)
-        self.text_edit.setFrameStyle(0)
-        self.text_edit.setFont(self.custom_font)
-        self.text_edit.textChanged.connect(self.update_window_title)
+        self.text_edit = TextEdit(self)
         add_widget(main_layout, self.text_edit)
         #----------------------------------- MENU BAR
         self.menuBar = MenuBar(self)
