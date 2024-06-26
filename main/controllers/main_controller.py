@@ -93,6 +93,8 @@ class MainWindow(QMainWindow):
     #----------------------------------- Search text call
     def search_and_highlight(self):
         searchAndHighlight(self)
+        self.menuBar.editMenu.cleanSearch.setDisabled(False)
+        self.toolBar.cleanSearch.setDisabled(False)
     #----------------------------------- Clean text call
     def clean_search_terms(self):
         cleanSearchTerms(self)

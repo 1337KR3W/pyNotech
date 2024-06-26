@@ -27,14 +27,14 @@ class ToolBar(QToolBar):
         self.save.setIcon(save_icon)
         self.save.setIconText("Save")
         self.addAction(self.save)
-
+        #------------------------- SEPARATOR
         self.addSeparator()
-
+        #------------------------- SEARCH ACTION
         self.search_action = QWidgetAction(self)
         self.search_action.setIcon(search_icon)
         self.search_action.setIconText("Search")
         self.addAction(self.search_action)
-
+        #------------------------- CLEAN ACTION
         self.cleanSearch = QWidgetAction(self)
         self.cleanSearch.setIcon(cleanSearch_icon)
         self.cleanSearch.setIconText("Clean search")
@@ -43,3 +43,5 @@ class ToolBar(QToolBar):
         # CONNECTIONS #
         self.save.triggered.connect(parent.save_file)
         self.open.triggered.connect(parent.open_file)
+        self.search_action.triggered.connect(parent.search_and_highlight)
+        self.cleanSearch.triggered.connect(parent.clean_search_terms)
