@@ -10,10 +10,8 @@ class ToolBar(QToolBar):
         save_icon = icons.save_icon()
         search_icon = icons.search_icon()
         cleanSearch_icon = icons.cleanSearch_icon()
-
-        # TOOL BAR
-        self.setMovable(False)
-
+        # TOOL BAR SETTINGS
+        self.setMovable(True)
         #------------------------- NEW ACTION
         self.new = QWidgetAction(self)  
         self.new.setIcon(new_icon)
@@ -44,5 +42,4 @@ class ToolBar(QToolBar):
         self.addAction(self.cleanSearch)
         # CONNECTIONS #
         self.save.triggered.connect(parent.save_file)
-
-        self.show()
+        self.open.triggered.connect(parent.open_file)

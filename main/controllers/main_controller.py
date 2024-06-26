@@ -6,7 +6,9 @@ from ui.bottom_bar.botton_bar import BottomBar
 from themes.theme_manager import ThemeManager
 from functions.save_file import saveFile
 from functions.save_file_as import saveFileAs
+from functions.open_file import openFile
 from connections.file_connections import setup_file_connections
+
 
 
 class MainWindow(QMainWindow):
@@ -68,4 +70,7 @@ class MainWindow(QMainWindow):
     # Save file as call
     def save_file_as(self):
         saveFileAs(self)
+    # Open file call
+    def open_file(self):
+        openFile(self)
 
