@@ -4,6 +4,7 @@ from ui.menu_bar.menu_bar import MenuBar
 from ui.tool_bar.tool_bar import ToolBar
 from ui.bottom_bar.botton_bar import BottomBar
 from themes.theme_manager import ThemeManager
+from functions.new_file import newFile
 from functions.save_file import saveFile
 from functions.save_file_as import saveFileAs
 from functions.open_file import openFile
@@ -69,6 +70,9 @@ class MainWindow(QMainWindow):
     #----------------------------------- Light theme call function
     def changeToLightTheme(self):
         self.theme_manager.set_light_theme()
+    
+    def new_file(self):
+        newFile(self)
     #----------------------------------- Save file call
     def save_file(self):
         saveFile(self)

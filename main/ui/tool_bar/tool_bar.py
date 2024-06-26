@@ -45,3 +45,4 @@ class ToolBar(QToolBar):
         self.open.triggered.connect(parent.open_file)
         self.search_action.triggered.connect(parent.search_and_highlight)
         self.cleanSearch.triggered.connect(parent.clean_search_terms)
+        self.new.triggered.connect(parent.new_file)
