@@ -8,6 +8,7 @@ from functions.save_file import saveFile
 from functions.save_file_as import saveFileAs
 from functions.open_file import openFile
 from connections.file_connections import setup_file_connections
+from connections.edit_connections import setup_edit_connections
 
 
 
@@ -50,6 +51,7 @@ class MainWindow(QMainWindow):
         main_layout.addLayout(self.bottomBar)
         #----------------------------------- CONNECTIONS
         setup_file_connections(self)
+        setup_edit_connections(self)
         #----------------------------------- THEMES 
         self.theme_manager = ThemeManager(
             self,             
@@ -73,4 +75,12 @@ class MainWindow(QMainWindow):
     # Open file call
     def open_file(self):
         openFile(self)
-
+    # Copy text call
+    def copy_text(self):
+        self.text_edit.copy()
+    # Cut text call
+    def cut_text(self):
+        self.text_edit.cut()
+    # Paste text call
+    def paste_text(self):
+        self.text_edit.paste()

@@ -1,14 +1,9 @@
-from main.ui.menu_bar.menu_bar import cop
 
-class EditConnections:
-    def __init__(self):
-
-        #---- Edit CONNECTIONS
-        self.copy.triggered.connect(self.text_edit.copy)
-        self.cut.triggered.connect(self.text_edit.cut)
-        self.paste.triggered.connect(self.text_edit.paste)
-        self.search.triggered.connect(self.searchAndHighlight)
-        self.selectAll.triggered.connect(self.text_edit.selectAll)
-        self.cleanSearch.triggered.connect(self.cleanSearchTerms)
-        self.undo.triggered.connect(self.text_edit.undo)
-        self.redo.triggered.connect(self.text_edit.redo)
+def setup_edit_connections(main_window):
+    main_window.menuBar.editMenu.copy.triggered.connect(main_window.copy_text)
+    main_window.menuBar.editMenu.paste.triggered.connect(main_window.paste_text)
+    main_window.menuBar.editMenu.cut.triggered.connect(main_window.cut_text)
+    #main_window.menuBar.editMenu.search.triggered.connect(main_window.searchAndHighlight)
+    #main_window.menuBar.editMenu.cleanSearch.triggered.connect(main_window.cleanSearchTerms)
+    #main_window.menuBar.editMenu.undo.triggered.connect(main_window.undo)
+    #main_window.menuBar.editMenu.redo.triggered.connect(main_window.redo)
