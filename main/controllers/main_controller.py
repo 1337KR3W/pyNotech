@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QMainWindow, QTextEdit, QWidget, QVBoxLayout, QHBoxLayout
+from PySide6.QtWidgets import QMainWindow,QVBoxLayout
 from PySide6.QtGui import QFont
 from ui.menu_bar.menu_bar import MenuBar
 from ui.tool_bar.tool_bar import ToolBar
@@ -24,19 +24,37 @@ from connections.preferences_connections import setup_preferences_connections
 from connections.help_connections import setup_help_connections
 from widgets.text_edit import TextEdit
 from widgets.main_widget import MainWidget
+from configuration.window_settings import WindowSettings
+
+#---------------------------------------------------------------------------------------
+
+#***************************************************************************************
+#     _.._   .    .  ._   .   _.._   _____   _.._   _.._  .    .                       *
+#    |´    )  \  /  |´ \  |  f    i | `|´ | |´     |´     |    |                       *
+#    |___.´    y`   |  |  |  |    |    |    |__    |      |____|                       *
+#    |´        |    |  |  |  |    |    |    |´     |      |´  `|                       *
+#    i         i    i  L__J   \__/     i    L____  L____  i    i  by josrojrom1        *
+#    ¡         :          !     :              ¡          .    :                       *
+#              .          :                    .          !                            *
+#    .                          .                         .                            *
+#                                                                                      *
+#                          .                    ¡                                      *
+#                                                                                      *
+#***************************************************************************************
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         #----------------------------------- MAIN WINDOW SETTINGS 
-        self.resize(800, 500)
-        self.initialTitle = "Untitled"
-        self.setWindowTitle(self.initialTitle)
-        self.current_path = None
-        self.current_font_size = 14
-        self.custom_font = QFont()
-        self.custom_font.setPointSize(self.current_font_size)
-        self.recentlyOpen = False
+        self.window_settings = WindowSettings()
+        self.resize(self.window_settings.resize[0], self.window_settings.resize[1])
+        self.initialTitle = self.window_settings.initial_title
+        self.setWindowIcon(self.window_settings.pynotech_icon)
+        self.setWindowTitle(self.window_settings.initial_title)
+        self.current_path = self.window_settings.current_path
+        self.current_font_size = self.window_settings.current_font_size
+        self.custom_font = self.window_settings.custom_font
+        self.recentlyOpen = self.window_settings.recently_open
         #----------------------------------- MAIN WIDGET AND LAYOUT 
         self.main_widget = MainWidget(self)
         self.setCentralWidget(self.main_widget)

@@ -1,13 +1,17 @@
 from PySide6.QtWidgets import QVBoxLayout, QHBoxLayout, QLabel, QFrame, QDialog, QTableWidget, QTableWidgetItem
 from PySide6.QtGui import QFont
 from PySide6.QtCore import Qt
+from icons.icons import Icons
 
 ####################
 # MORE HELP WINDOW #
 def showMoreHelp(self):
+    icons = Icons()
+    more_help_icon = icons.help_icon()
     # MORE HELP DIALOG #
     dialog = QDialog()
     dialog.setWindowTitle("More help")
+    dialog.setWindowIcon(more_help_icon)
     dialog.setModal(True)
     dialog.setStyleSheet("background-color: rgb(175,210,255)")
     # TABLES CREATION #

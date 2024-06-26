@@ -12,6 +12,9 @@ class Icons:
 
     def get_standard_icon(self, icon_path):
         return self.style.standardIcon(getattr(QStyle, icon_path))
+    
+    def pynotech_icon(self):
+        return QIcon(os.path.join(self.main_dir, 'resources', 'icons', 'pynotech_icon.PNG'))
 
     def new_icon(self):
         return self.get_standard_icon("SP_FileIcon")
