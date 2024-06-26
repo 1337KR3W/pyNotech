@@ -11,7 +11,8 @@ from functions.open_file import openFile
 from functions.check_unsaved_changes import checkUnsaveChanges
 from functions.search import searchAndHighlight
 from functions.clean_search import cleanSearchTerms
-from functions.close_event import closeEvent
+from functions.zoom_in_editor import zoomInEditor
+from functions.zoom_out_editor import zoomOutEditor
 from connections.file_connections import setup_file_connections
 from connections.edit_connections import setup_edit_connections
 
@@ -122,4 +123,12 @@ class MainWindow(QMainWindow):
     #----------------------------------- Redo text call
     def redo_text(self):
         self.text_edit.redo()
+
+    #----------------------------------- Redo text call
+    def zoom_in(self):
+        zoomInEditor(self)
+
+    #----------------------------------- Redo text call
+    def zoom_out(self):
+        zoomOutEditor(self)
     
