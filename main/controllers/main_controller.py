@@ -33,7 +33,7 @@ from configuration.window_settings import WindowSettings
 #    |´    )  \  /  |´ \  |  f    i | `|´ | |´     |´     |    |                       *
 #    |___.´    y`   |  |  |  |    |    |    |__    |      |____|                       *
 #    |´        |    |  |  |  |    |    |    |´     |      |´  `|                       *
-#    i         i    i  L__J   \__/     i    L____  L____  i    i  by josrojrom1        *
+#    i         i    i  L__J   \__/     i    L____  L____  i    i  by 1337KR3W          *
 #    ¡         :          !     :              ¡          .    :                       *
 #              .          :                    .          !                            *
 #    .                          .                         .                            *
