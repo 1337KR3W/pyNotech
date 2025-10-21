@@ -4,5 +4,5 @@ from PySide6.QtCore import QUrl
 ############################
 # CONTRIBUTE LINK FUNCTION #
 def goGitRepo(self):
-    url = QUrl("https://github.com/josrojrom1/pyNotech")
+    url = QUrl("https://github.com/1337KR3W/pyNotech")
     QDesktopServices.openUrl(url)
