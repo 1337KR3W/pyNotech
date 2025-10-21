@@ -68,7 +68,7 @@ def showMoreHelp(self):
     # CONTACT INFO LABEL #
     label = QLabel("Si usted encuentra algún problema con la aplicación puede ponerse en contacto\n"
                    "con nosotros mandando un email a la siguiente dirección de correo electrónico:\n\n\n"
-                   "josrojrom1@alum.us.es")
+                   "pepecodesdev@gmail.com")
     # CONTACT INFO STYLE #
     label.setAlignment(Qt.AlignmentFlag.AlignJustify)
     label.setFont(moreHelpFont)
