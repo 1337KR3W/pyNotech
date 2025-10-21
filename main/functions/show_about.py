@@ -20,7 +20,7 @@ def showAbout(self):
                         "Sevilla (US). Utilizando PySide6 para Python, pyNotech es una aplicación de escritorio\n"+
                         "intuitiva y eficiente, desarrollada con el objetivo de aprender y establecer las bases del\n"+
                         "desarrollo de aplicaciones de escritorio.\n\n\n"
-                        "Autor, José Joaquín Rojas Romero                                                 pyNotech v1.0.0-beta")
+                        "Autor, José Joaquín Rojas Romero (1337KR3W)                                      pyNotech v1.0.0-beta")
     #---------------------------------- ABOUT LABEL STYLE
     label.setAlignment(Qt.AlignmentFlag.AlignJustify)
     label.setFont(aboutFont)
