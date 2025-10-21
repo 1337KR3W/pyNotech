@@ -475,7 +475,7 @@ class MainWindow(QMainWindow):
                         "Sevilla (US). Utilizando PySide6 para Python, pyNotech es una aplicación de escritorio\n"+
                         "intuitiva y eficiente, desarrollada con el objetivo de aprender y establecer las bases del\n"+
                         "desarrollo de aplicaciones de escritorio.\n\n\n"
-                        "Autor, José Joaquín Rojas Romero                                                 pyNotech v1.0.0-beta")
+                        "Autor, José Joaquín Rojas Romero (1337KR3W)                                      pyNotech v1.0.0-beta")
         # ABOUT LABEL STYLE #
         label.setAlignment(Qt.AlignmentFlag.AlignJustify)
         label.setFont(aboutFont)
@@ -552,7 +552,7 @@ class MainWindow(QMainWindow):
         # CONTACT INFO LABEL #
         label = QLabel("Si usted encuentra algún problema con la aplicación puede ponerse en contacto\n"
                        "con nosotros mandando un email a la siguiente dirección de correo electrónico:\n\n\n"
-                       "josrojrom1@alum.us.es")
+                       "pepecodesdev@gmail.com")
         # CONTACT INFO STYLE #
         label.setAlignment(Qt.AlignmentFlag.AlignJustify)
         label.setFont(moreHelpFont)
